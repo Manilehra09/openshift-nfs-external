@@ -5,7 +5,7 @@ This guide configures **OpenShift Single Node (SNO)** to use an **external NFS s
 
 ---
 
-## 1️⃣ Install NFS on external server
+## 1️ Install NFS on external server
 
 ### RHEL / Fedora / CentOS
 ```bash
@@ -19,7 +19,7 @@ sudo apt install -y nfs-kernel-server
 
 ---
 
-## 2️⃣ Create export directory
+## 2️ Create export directory
 ```bash
 sudo mkdir -p /srv/nfs/data
 sudo chmod 777 /srv/nfs/data
@@ -27,7 +27,7 @@ sudo chmod 777 /srv/nfs/data
 
 ---
 
-## 3️⃣ Configure NFS export
+## 3️ Configure NFS export
 Edit:
 ```bash
 sudo nano /etc/exports
@@ -50,14 +50,14 @@ showmount -e
 
 ---
 
-## 4️⃣ Start and enable NFS service
+## 4️ Start and enable NFS service
 ```bash
 sudo systemctl enable --now nfs-server
 ```
 
 ---
 
-## 5️⃣ Firewall (optional)
+## 5️ Firewall (optional)
 ```bash
 sudo firewall-cmd --add-service=nfs --permanent
 sudo firewall-cmd --reload
@@ -65,7 +65,7 @@ sudo firewall-cmd --reload
 
 ---
 
-## 6️⃣ Create PersistentVolume on OpenShift
+## 6️ Create PersistentVolume on OpenShift
 
 **pv-nfs.yaml**
 ```yaml
@@ -91,7 +91,7 @@ oc apply -f pv-nfs.yaml
 
 ---
 
-## 7️⃣ PVC (Static — do NOT set StorageClass)
+## 7️ PVC (Static — do NOT set StorageClass)
 
 **pvc-nfs.yaml**
 ```yaml
@@ -117,7 +117,7 @@ oc apply -f pvc-nfs.yaml
 
 ---
 
-## 8️⃣ Test Deployment
+## 8️ Test Deployment
 
 **nfs-test.yaml**
 ```yaml
